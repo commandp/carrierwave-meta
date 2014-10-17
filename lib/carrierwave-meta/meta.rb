@@ -9,13 +9,6 @@ module CarrierWave
       include CarrierWave::ModelDelegateAttribute
       include CarrierWave::MimeTypes
 
-      set_content_type(true)
-
-      after :retrieve_from_cache, :set_content_type
-      after :retrieve_from_cache, :call_store_meta
-      after :retrieve_from_store, :set_content_type if storage.name == 'CarrierWave::Storage::File'
-      after :retrieve_from_store, :call_store_meta
-
       model_delegate_attribute :content_type, ''
       model_delegate_attribute :file_size, 0
       model_delegate_attribute :image_size, []
